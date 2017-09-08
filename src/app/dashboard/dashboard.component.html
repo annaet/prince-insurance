@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Prince Insurance</h1>
+
+  <div *ngIf="order && order.vehicleDetails" class="notification-window">
+    <div class="notification-info">
+      <h3>Arium {{order.vehicleDetails.modelType}} to be insured</h3>
+      <p>ID: {{order.orderId}}</p>
+      <p>VIN: {{order.vehicleDetails.vin}}</p>
+      <div [ngClass]="['swatch', order.vehicleDetails.colour]"></div>
+
+      <button [routerLink]="['/policy', order.orderId]" routerLinkActive="active">Create Policy</button>
+      <button (click)="reject()">Reject</button>
+    </div>
+  </div>
+</div>
