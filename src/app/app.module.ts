@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PolicyComponent } from './policy/policy.component';
 
+import { WindowRef } from './window-ref/window-ref.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
+
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'policy/:id', component: PolicyComponent },
@@ -17,15 +20,14 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     DashboardComponent,
-    PolicyComponent
+    PolicyComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(
-      routes
-    )
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [WindowRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

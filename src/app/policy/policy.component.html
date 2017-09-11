@@ -3,7 +3,7 @@
     <div class="line-gap" ></div>
     <div id="customer-name" >Kathryn Harris</div>
     <div id="policy-details-holder">
-        <div class="customer-details" >
+        <div id="customer-details" >
             Owner of an <b>Arium Nova</b><br />
             With Prince Insurance since November 2014<br />
             Insured on <b>25 November 2017</b><br /><br />
@@ -12,8 +12,8 @@
             Newbury<br />
             United Kingdom
         </div>
-        <div class="vehicle-details" >
-            <b>Arium Nova</b><br />
+        <div id="car-details" >
+            <b>Arium {{car.vehicleDetails.modelType}}</b><br />
             New Vehicle<br />
             Owned by: Kathryn Harris<br />
             Registered on: 8 Jan 2017<br />
@@ -47,7 +47,9 @@
         </div>
     </div>
     <div class="small-title" >Location</div>
-    <div id="map" ></div>
+    <div class="car-location">
+        <div id="mapid"></div>
+    </div>
     <div class="section-title" >Alert Information</div>
     <div class="line-gap" ></div>
     <div class="alert-block" >
