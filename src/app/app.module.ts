@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PolicyComponent } from './policy/policy.component';
 
-import { WindowRef } from './window-ref.service';
+import { WindowRef } from './window-ref/window-ref.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     DashboardComponent,
-    PolicyComponent
+    PolicyComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

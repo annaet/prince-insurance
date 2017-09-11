@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WindowRef } from '../window-ref.service';
+import { WindowRef } from '../window-ref/window-ref.service';
 
 @Component({
   selector: 'app-policy',

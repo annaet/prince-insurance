@@ -1,25 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html, body, app-policy, .app {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
-.header {
-  height: 40px;
-  padding: 20px;
+.app {
+  display: flex;
 }
 
-.header h1 {
-  height: 40px;
-  margin: 0;
+.sidebar {
+  width: 300px;
 }
 
 .container {
-  height: calc(100% - 80px);
-  width: 100%;
+  height: 100%;
+  width: calc(100% - 300px);
 }
 
 button {
