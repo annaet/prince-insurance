@@ -11,11 +11,7 @@ export class DashboardComponent implements OnInit {
 
   constructor() {
     let webSocketURL = 'ws://localhost:1880/ws/insurecar';
-    // if (this.config.useLocalWS){
-    //   insureWebSocketURL = 'ws://' + location.host + '/ws/insurecar';
-    // } else {
-    //   insureWebSocketURL = this.config.nodeRedBaseURL + '/ws/insurecar';
-    // }
+
     console.log('connecting websocket', webSocketURL);
     let websocket = new WebSocket(webSocketURL);
 
@@ -27,6 +23,20 @@ export class DashboardComponent implements OnInit {
       this.order = JSON.parse(event.data);
       console.log(this.order);
     }
+
+    // this.order = {
+    //   "$class": "org.acme.vehicle.lifecycle.manufacturer.Order",
+    //   "orderId": "3661e1ad-ee60-ab7f-47ba-08c3cea0ee0f",
+    //   "vehicleDetails": {
+    //     "$class": "org.vda.VehicleDetails",
+    //     "make": "Arium",
+    //     "modelType": "Nova",
+    //     "colour": "vibrant grape",
+    //     "vin": "45bff6b5c44851533"
+    //   },
+    //   "orderStatus": "DELIVERED",
+    //   "statusUpdates": []
+    // };
   }
 
   ngOnInit() {
