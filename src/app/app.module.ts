@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PolicyComponent } from './policy/policy.component';
 
+import { WindowRef } from './window-ref.service';
+
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'policy/:id', component: PolicyComponent },
@@ -21,11 +23,9 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(
-      routes
-    )
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [WindowRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
