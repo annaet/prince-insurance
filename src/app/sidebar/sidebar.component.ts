@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
-  constructor() { }
+  selected: any;
+
+  constructor() {
+    this.selected = 'overview';
+  }
+
+  select(route) {
+    this.selected = route;
+  }
 
 }

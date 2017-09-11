@@ -1,3 +1,38 @@
 .sidebar {
   color: #473793;
 }
+
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar li {
+  height: 25px;
+  font-family: 'OpenSans-Semibold';
+  color: #473793;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  padding-left: 35px;
+  margin-bottom: 15px;
+  border-left: 5px solid white;
+}
+
+.sidebar li.selected {
+  opacity: 1;
+  border-left: 5px solid #473793;
+}
+
+.sidebar li:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.sidebar li.disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sidebar li:focus {
+  outline: none;
+}
