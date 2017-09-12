@@ -12,8 +12,62 @@ export class PolicyComponent {
   car: any;
   location: any;
   L: any;
+  order: any;
 
   constructor(private winRef: WindowRef) {
+
+    let webSocketURLAlerts = 'ws://localhost:1880/ws/updateorderstatus';
+    
+    let websocketAlerts = new WebSocket(webSocketURLAlerts);
+
+    websocketAlerts.onopen = function () {
+      console.log('Alerts websocket open!');
+    };
+
+    websocketAlerts.onmessage = event => {
+
+      // ADD PARSING FOR MESSAGE ONCE FOUND OUT HOW IT WILL BE STYRUCTURED
+
+      this.order = JSON.parse(event.data);
+
+      document.getElementById('alert-holder').innerHTML = `<div id="`+this.order.transactionId+`" class="alert-block" _ngcontent-c2="" >
+                                                                  <div class="left-column" _ngcontent-c2="" >
+                                                                      <div class="notification-title" _ngcontent-c2="" ><img src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" _ngcontent-c2="" />Alert!</div>
+                                                                      <div class="alert-time" _ngcontent-c2="" >
+                                                                          <div class="small-title" _ngcontent-c2="" >Accident</div>
+                                                                          13 Jul 2017 07:35PM
+                                                                      </div>
+                                                                      <div class="event-details" _ngcontent-c2="" >
+                                                                          <div class="tiny-header" _ngcontent-c2="" >Event ID</div>
+                                                                          `+this.order.transactionId+`
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="alert-detailed-data" _ngcontent-c2="" >
+                                                                      <div class="data-field" _ngcontent-c2="">
+                                                                          <div class="small-title" _ngcontent-c2="" >Acceleration</div>
+                                                                          <span_ngcontent-c2="" >2.48g</span>
+                                                                      </div>
+                                                                      <div class="data-field" _ngcontent-c2="">
+                                                                          <div class="small-title" _ngcontent-c2="" >Temperature</div>
+                                                                          <span_ngcontent-c2="" >75f</span>
+                                                                      </div>
+                                                                      <div class="data-field" _ngcontent-c2="" >
+                                                                          <div class="small-title" _ngcontent-c2="" >Humidity</div>
+                                                                          <span _ngcontent-c2="" >15%</span>
+                                                                      </div>
+                                                                      <div class="data-field" _ngcontent-c2="" >
+                                                                          <div class="small-title" _ngcontent-c2="" >x: 1.45</div>
+                                                                          <div class="small-title" _ngcontent-c2="" >y: 2.48</div>
+                                                                          <div class="small-title" _ngcontent-c2="" >z: 0.98</div>
+                                                                      </div>
+                                                                      <div class="data-field" _ngcontent-c2="" >
+                                                                          <div class="small-title" _ngcontent-c2="" >Light</div>
+                                                                          <span _ngcontent-c2="" >45lux</span>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>` + document.getElementById('alert-holder').innerHTML;
+    }
+
     this.L = winRef.nativeWindow.L;
     this.car = {
       "$class": "org.acme.vehicle.lifecycle.manufacturer.Order",

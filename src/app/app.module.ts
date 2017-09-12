@@ -8,6 +8,7 @@ import { PolicyComponent } from './policy/policy.component';
 
 import { WindowRef } from './window-ref/window-ref.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AlertSidebarComponent } from './alert-sidebar/alert-sidebar.component';
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
     AppComponent,
     DashboardComponent,
     PolicyComponent,
-    SidebarComponent
+    SidebarComponent,
+    AlertSidebarComponent
   ],
   imports: [
     BrowserModule,

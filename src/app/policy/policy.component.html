@@ -13,15 +13,15 @@
             United Kingdom
         </div>
         <div id="car-details" >
-            <b>Arium {{car.vehicleDetails.modelType}}</b><br />
+            <span><b>{{car.vehicleDetails.make}} {{car.vehicleDetails.modelType}}</b></span><br />
             New Vehicle<br />
-            Owned by: Kathryn Harris<br />
+            Owned by: <span>Kathryn Harris</span><br />
             Registered on: 8 Jan 2017<br />
             2.5L Engine 240bhp<br />
             5 Doors<br />
-            Tinted Windows<br />
-            Executive Trim<br />
-            Colour: Loud Red
+            <span>Tinted Windows</span><br />
+            <span>Executive Trim</span><br />
+            Colour: <span>{{car.vehicleDetails.colour}}</span>
         </div>
     </div>
     <div class="section-title" >Live Vehicle Information</div>
@@ -47,45 +47,10 @@
         </div>
     </div>
     <div class="small-title" >Location</div>
-    <div class="car-location">
-        <div id="mapid"></div>
+    <div class="car-location" id="mapid">
     </div>
     <div class="section-title" >Alert Information</div>
     <div class="line-gap" ></div>
-    <div class="alert-block" >
-        <div class="left-column" >
-            <div class="notification-title" ><img src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" />Alert!</div>
-            <div class="alert-time" >
-                <div class="small-title" >Accident</div>
-                13 Jul 2017 07:35PM
-            </div>
-            <div class="event-details" >
-                <div class="tiny-header" >Event ID</div>
-                14furc5Xw1YVHxw9rNmPrdt7G
-            </div>
-        </div>
-        <div class="alert-detailed-data" >
-            <div class="data-field">
-                <div class="small-title" >Acceleration</div>
-                <span>2.48g</span>
-            </div>
-            <div class="data-field">
-                <div class="small-title" >Temperature</div>
-                <span>75f</span>
-            </div>
-            <div class="data-field">
-                <div class="small-title" >Humidity</div>
-                <span>15%</span>
-            </div>
-            <div class="data-field">
-                <div class="small-title" >x: 1.45</div>
-                <div class="small-title" >y: 2.48</div>
-                <div class="small-title" >z: 0.98</div>
-            </div>
-            <div class="data-field">
-                <div class="small-title" >Light</div>
-                <span>45lux</span>
-            </div>
-        </div>
-    </div>
+    <div id="alert-holder" ></div> <!-- ALERTS AT BOTTOM ADDED HERE DYNAMICALLY -->
 </div>
+<app-alert-sidebar id="alert-stream"></app-alert-sidebar>

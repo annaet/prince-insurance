@@ -1,6 +1,8 @@
 #container
 {
     margin-top: 25px;
+    width: calc(100% - 360px);
+    float: left;
 }
 .section-title
 {
@@ -48,6 +50,10 @@
 {
     width: 50%;
     float: left;
+}
+#car-details span
+{
+    text-transform: capitalize;
 }
 .small-title
 {
@@ -102,12 +108,25 @@
     margin-top: 5px;
     margin-bottom: 50px;
 }
+@keyframes border-fade
+{  
+    0% { border-color: #5a3ec8; }
+    100% { border-color: transparent; }
+}
 .alert-block
 {
     line-height: 26px;
     background:rgba(233, 232, 255, 0.5);
-    padding: 15px;
+    padding: 13px;
     margin-bottom: 25px;
+    border: 2px solid transparent;
+}
+.alert-block.highlight
+{
+    animation-name: border-fade;  
+    animation-iteration-count: 1;  
+    animation-duration: 2s;
+    border: 2px solid transparent;
 }
 .alert-block::after /* CSS CLEAR FIX TO FORCE HEIGHT INCLUSION OF FLOATED ELEMENTS */
 {
@@ -184,4 +203,8 @@
     color:#454856;
     letter-spacing:0;
     text-align:left;
+}
+#alert-stream
+{
+    float: right;
 }
