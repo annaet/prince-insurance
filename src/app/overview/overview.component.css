@@ -1,0 +1,170 @@
+#container
+{
+    margin-top: 25px;
+}
+.section-title
+{
+    font-family:OpenSans;
+    font-size:16px;
+    color:#454856;
+    letter-spacing:0;
+    text-align:left;
+}
+.line-gap
+{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #dcd4f7;
+    width:100%;
+    height:2px;
+}
+#information
+{
+    font-family:OpenSans;
+    font-size:14px;
+    color:#454856;
+    letter-spacing:0;
+    text-align:left;
+}
+
+#today{
+    font-family:OpenSans-Semibold;
+    font-size:14px;
+    color:#454856;
+    letter-spacing:0;
+    text-align:left;
+    text-decoration: underline;
+}
+
+#insurancestatus{
+    width: 1092px;
+    height: 200px;
+    margin-top: 28px;
+}
+
+.status{
+    font-family:OpenSans;
+    margin-left: 0px;
+    margin-top: 30px;
+    font-size: 25px;
+}
+
+.textstatuswrapper{
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.strong{
+    font-family:OpenSans;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.date{
+    font-style: italic;
+    font-size: 12px;
+}
+
+#box1{
+    border:1px solid #dcd4f7;
+    width:348px;
+    height:197px;
+    float: left;
+    margin-right: 20px;
+}
+
+#box2{
+    border:1px solid #dcd4f7;
+    width:348px;
+    height:197px;
+    float: right;
+    margin-left: 20px;
+}
+
+#box3{
+    border:1px solid #dcd4f7;
+    width:348px;
+    height:197px;
+    float: right;
+}
+
+#graph{
+    width: 1091px;
+    height: 240px;
+    border:1px solid #dcd4f7;
+    margin-top: 19px;
+}
+
+#alerts{
+    border:1px solid #dcd4f7;
+    width:717px;
+    height:321px;
+    margin-top: 20px;
+    float: left;
+}
+
+#circle{
+    border:1px solid #dcd4f7;
+    width:348px;
+    height:321px;
+    margin-top: 20px;
+    float: right;
+}
+
+.wrapper{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.title{
+    font-family:OpenSans;
+    font-size:16px;
+    color:#454856;
+    letter-spacing:0;
+    text-align:left;
+}
+
+#tabletitle{
+    margin-top: 20px;
+}
+
+#event{
+    float: left;
+}
+
+#time{
+    float: left;
+    margin-left: 200px;
+}
+
+#type{
+    float: left;
+    margin-left: 150px;
+}
+
+
+.line-gap2{
+    margin-top: 55px;
+    margin-bottom: 25px;
+    background-color: #dcd4f7;
+    width:90%;
+    height:2px;
+}
+
+#tablewrapper{
+    width: 650px;
+    height: 150px;
+    background-color: grey;
+}
+
+.table{
+    border: 1px solid black;
+}
+
+.line-gap3{
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color: #dcd4f7;
+    width:90%;
+    height:2px;
+}

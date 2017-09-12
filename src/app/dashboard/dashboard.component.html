@@ -1,27 +1,5 @@
 <div class="container">
   <div *ngIf="order && order.vehicleDetails" class="notification-window">
-    <div class="notification-info">
-      <div class="notification-detail">
-        <div class="car-detail">
-          <p>Would you like to insure this vehicle?</p>
-          <p><strong>Arium {{order.vehicleDetails.modelType}}</strong></p>
-
-          <!-- <p>ID: {{order.orderId}}</p> -->
-          <!-- <p>VIN: {{order.vehicleDetails.vin}}</p> -->
-          <div [ngClass]="['swatch', order.vehicleDetails.colour]"></div>
-        </div>
-
-        <div class="button-container">
-          <button class="button-default" [routerLink]="['/policy', order.orderId]" routerLinkActive="active">Create Policy</button>
-          <button (click)="reject()">Reject</button>
-        </div>
-      </div>
-
-      <div class="notification-photo">
-        <img *ngIf="order.vehicleDetails.modelType === 'Nova'" src="../../assets/images/bmw_1.jpeg">
-        <img *ngIf="order.vehicleDetails.modelType === 'Nebula'" src="../../assets/images/bmw_2.png">
-        <img *ngIf="order.vehicleDetails.modelType === 'Thanos'" src="../../assets/images/bmw_3.jpeg">
-      </div>
-    </div>
+    <app-popup></app-popup>
   </div>
 </div>
