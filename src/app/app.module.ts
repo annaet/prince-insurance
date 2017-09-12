@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { PolicyComponent } from './policy/policy.component';
 
 import { WindowRef } from './window-ref/window-ref.service';
@@ -13,17 +13,15 @@ import { OverviewComponent } from './overview/overview.component';
 import { PopupComponent } from './popup/popup.component';
 
 const routes: Routes = [
-  { path: 'dashboard',  component: DashboardComponent },
   { path: 'overview',  component: OverviewComponent },
   { path: 'policy/:id', component: PolicyComponent },
   { path: 'app', component: AppComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/overview', pathMatch: 'full' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     PolicyComponent,
     SidebarComponent,
     AlertSidebarComponent,
@@ -32,6 +30,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [WindowRef],
