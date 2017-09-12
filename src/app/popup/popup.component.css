@@ -112,6 +112,8 @@
     height:55px;
     box-shadow:0 1px 5px 0;
     margin-top: 69px;
+    cursor: pointer; 
+    cursor: hand;
 }
 
 #canceltitle{
@@ -126,6 +128,8 @@
     margin-top: 50px;
     box-shadow:0 1px 5px 0;
     margin-right: 40px;
+    cursor: pointer; 
+    cursor: hand;
 }
 
 #approvetitle{
