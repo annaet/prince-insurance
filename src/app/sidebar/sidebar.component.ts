@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,8 +10,16 @@ export class SidebarComponent {
 
   selected: any;
 
-  constructor() {
-    this.selected = 'overview';
+  constructor(private router: Router) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd ) {
+        if (event.url.indexOf('policy') > -1) {
+          this.selected = 'customers';
+        } else {
+          this.selected = 'overview';
+        }
+      }
+    });
   }
 
   select(route) {
