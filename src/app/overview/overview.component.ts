@@ -23,7 +23,7 @@ export class OverviewComponent implements OnInit {
       "orderStatus": "DELIVERED",
       "statusUpdates": []
      };
-   }
+  }
 
   ngOnInit() {
   }

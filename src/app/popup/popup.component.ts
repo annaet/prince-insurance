@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopupComponent implements OnInit {
 
-  constructor() { }
+  @Input() orderDetails;
+
+  constructor() {
+  }
 
   ngOnInit() {
+    console.log(this.orderDetails);
+  }
+
+  cancel() {
+    console.log("click");
+    delete this.orderDetails.vehicleDetails;
+    delete this.orderDetails.orderId;
+    delete this.orderDetails.$class;
+    delete this.orderDetails.orderStatus;
+    delete this.orderDetails.statusUpdates;
   }
 
 }

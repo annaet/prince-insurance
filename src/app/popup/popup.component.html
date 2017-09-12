@@ -30,13 +30,13 @@
           <div class="filldot">
           </div>
         </div>
-        <div class="dot"> 
+        <div class="dot">
           <div class="filldot">
-          </div> 
+          </div>
         </div>
-        <div class="dot">  
+        <div class="dot">
         </div>
-        <div class="dot">  
+        <div class="dot">
         </div>
       </div>
     </div>
@@ -53,15 +53,15 @@
       Tinted Window<br>
       Executive Trim<br>
       Colour: Loud Red
-      <div id="cancelbox">
+      <div id="cancelbox" (click)="cancel()">
         <div id="canceltitle">
-          cancel
+          Cancel
         </div>
       </div>
     </div>
     <div id="pic">
       <img src="assets/images/bmw_1.jpeg" width="200px" height="200px">
-      <div id="approve">
+      <div id="approve" [routerLink]="['/policy/213']">
           <div id="approvetitle">
             Approve Insurance
           </div>

@@ -22,7 +22,7 @@
         <div id="box3" >
           <div class="status">
             <div class="textstatuswrapper">
-              <span class="strong">120</span> Vehicle Alerts <br> 
+              <span class="strong">120</span> Vehicle Alerts <br>
               <span class="date">As of 11 Sept 2017</span>
             </div>
            </div>
@@ -49,12 +49,12 @@
             Time
           </div>
           <div id="type">
-            Event Type 
+            Event Type
           </div>
         </div>
           <div class="line-gap2">
           </div>
-          
+
           <table>
               <tbody>
               <tr>
@@ -99,5 +99,5 @@
     </div>
 </div>
 <div *ngIf="order && order.vehicleDetails" class="notification-window">
-    <app-popup></app-popup>
-  </div>
+  <app-popup [orderDetails]="order"></app-popup>
+</div>
