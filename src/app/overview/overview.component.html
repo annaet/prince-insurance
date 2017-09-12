@@ -1,0 +1,103 @@
+<div id="container">
+    <div class="section-title" >Dashboard</div>
+    <div class="line-gap" ></div>
+    <div id="information" >Information from <span id="today">today</span></div>
+    <div id="insurancestatus">
+        <div id="box1" >
+          <div class="status">
+            <div class="textstatuswrapper">
+            <span class="strong">549</span> Registered Vehicles <br>
+            <span class="date">As of 11 Sept 2017</span>
+            </div>
+          </div>
+        </div>
+        <div id="box2" >
+          <div class="status">
+            <div class="textstatuswrapper">
+              <span class="strong">590</span> Customers <br>
+              <span class="date">As of 11 Sept 2017</span>
+            </div>
+          </div>
+        </div>
+        <div id="box3" >
+          <div class="status">
+            <div class="textstatuswrapper">
+              <span class="strong">120</span> Vehicle Alerts <br> 
+              <span class="date">As of 11 Sept 2017</span>
+            </div>
+           </div>
+        </div>
+    </div>
+    <div id="graph">
+      <div class="wrapper">
+        <div class="title">
+        Claim History
+        </div>
+      </div>
+    </div>
+    <div id="alerts">
+      <div class="wrapper">
+        <div class="title">
+          Recent Vehicle Alerts
+        </div>
+
+        <div id="tabletitle">
+          <div id="event">
+            Event ID
+          </div>
+          <div id="time">
+            Time
+          </div>
+          <div id="type">
+            Event Type 
+          </div>
+        </div>
+          <div class="line-gap2">
+          </div>
+          
+          <table>
+              <tbody>
+              <tr>
+              <td>4DF3C3F68FCC83B27E9D42C90431A</td>
+              <td>02:21</td>
+              <td>Accident</td>
+              </tr>
+              <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              </tr>
+              <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              </tr>
+              <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              </tr>
+              <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              </tr>
+              </tbody>
+              </table>
+
+
+      </div>
+    </div>
+    <div id="circle">
+      <div class="wrapper">
+        <div class="title">
+          Claim Breakdown
+        </div>
+        <div class="line-gap3">
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="order && order.vehicleDetails" class="notification-window">
+    <app-popup></app-popup>
+  </div>
