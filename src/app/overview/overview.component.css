@@ -1,6 +1,8 @@
 #container
 {
     margin-top: 25px;
+    width: calc(100% - 310px);
+    position: absolute;
 }
 .section-title
 {
@@ -37,7 +39,7 @@
 }
 
 #insurancestatus{
-    width: 1092px;
+    width: 100%;
     height: 200px;
     margin-top: 28px;
 }
@@ -67,29 +69,29 @@
 
 #box1{
     border:1px solid #dcd4f7;
-    width:348px;
+    width:calc(33% - 12px);
     height:197px;
     float: left;
-    margin-right: 20px;
+    margin-right:20px;
 }
 
 #box2{
     border:1px solid #dcd4f7;
-    width:348px;
+    width:calc(33% - 12px);
     height:197px;
-    float: right;
-    margin-left: 20px;
+    float: left;
+    
 }
 
 #box3{
     border:1px solid #dcd4f7;
-    width:348px;
+    width:calc(33% - 12px);
     height:197px;
     float: right;
 }
 
 #graph{
-    width: 1091px;
+    width: 100%;
     height: 240px;
     border:1px solid #dcd4f7;
     margin-top: 19px;
@@ -97,7 +99,7 @@
 
 #alerts{
     border:1px solid #dcd4f7;
-    width:717px;
+    width:calc(67% - 22px);
     height:321px;
     margin-top: 20px;
     float: left;
@@ -105,7 +107,7 @@
 
 #circle{
     border:1px solid #dcd4f7;
-    width:348px;
+    width:33%;
     height:321px;
     margin-top: 20px;
     float: right;
@@ -130,22 +132,14 @@
 
 .event{
    
-    width: 202px;
+    width: 33.3%;
     height: 20px;
     float: left;
     margin-right: 10px;
     float: left;
 }
 
-#time{
-    float: left;
-    margin-left: 200px;
-}
 
-#type{
-    float: left;
-    margin-left: 150px;
-}
 
 
 .line-gap2{
@@ -157,13 +151,28 @@
 }
 
 #tablewrapper{
-    width: 650px;
     height: 150px;
     background-color: grey;
 }
 
 .table{
-    border: 1px solid black;
+    width: calc(100% - 20px);
+    font-family:OpenSans;
+    font-size:14px;
+    color:#454856;
+    letter-spacing:0;
+    text-align:left;
+    margin-top: 22px;
+    border-collapse: collapse;
+}
+
+.table td{
+    padding: 12px 0 12px 0;
+}
+
+.table tr:first-child td{
+    border-bottom: #dcd4f7 solid 1px;
+    opacity: 0.5;
 }
 
 .line-gap3{
@@ -175,9 +184,17 @@
 }
 
 .z1{
-    width: 202px;
-    height: 20px;
+    
+    
     float: left;
     margin-right: 10px;
     margin-top: 10px;
+    background-color: gold;
+}
+
+#container::after
+{
+    content: "";
+    display: block;
+    clear: block;
 }
