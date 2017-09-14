@@ -67,6 +67,14 @@
     font-size: 12px;
 }
 
+.logo{
+    margin-left: 28px;
+    margin-bottom: 27px;
+    margin-top: 27px;
+    opacity:0.1;
+}
+
+
 #box1{
     border:1px solid #dcd4f7;
     width:calc(33% - 12px);

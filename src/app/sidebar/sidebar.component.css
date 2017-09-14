@@ -1,3 +1,8 @@
+.prince{
+  padding-top: 25px;
+  padding-left: 41px;
+}
+
 .sidebar {
   color: #473793;
 }
@@ -35,4 +40,12 @@
 
 .sidebar li:focus {
   outline: none;
+}
+
+.logo{
+  margin-right: 21px;
+}
+
+.logo1{
+  margin-right: 17px;
 }
