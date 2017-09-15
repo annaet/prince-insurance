@@ -1,7 +1,7 @@
 #container
 {
     margin-top: 25px;
-    width: calc(100% - 310px);
+    width: calc(100% - 350px);
     position: absolute;
 }
 .section-title
@@ -205,4 +205,9 @@
     content: "";
     display: block;
     clear: block;
+}
+
+#notification-window.hidden
+{
+    display: none;
 }

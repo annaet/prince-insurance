@@ -23,10 +23,15 @@
 #wrapper {
     box-shadow:0 2px 25px 0 rgba(0,0,0,0.20);
     background: white;
-    width:758px;
-    height:442px;
+    padding: 40px;
 }
 
+#wrapper::after /* CSS CLEAR FIX TO FORCE HEIGHT INCLUSION OF FLOATED ELEMENTS */
+{
+    content: "";
+    display: block;
+    clear: both;
+}
 
 #title{
     font-family:OpenSans-Semibold;
@@ -34,13 +39,18 @@
     color:#454856;
     letter-spacing:0;
     text-align:left;
-    padding-top: 39px;
-    padding-left: 50px;
 }
 
-#body{
+#body
+{
     margin-top: 30px;
-    padding-left: 50px;
+}
+
+#body::after /* CSS CLEAR FIX TO FORCE HEIGHT INCLUSION OF FLOATED ELEMENTS */
+{
+    content: "";
+    display: block;
+    clear: both;
 }
 
 #text1{
@@ -58,6 +68,11 @@
     color:#454856;
     letter-spacing:0;
     text-align:left;
+}
+
+.texttitle > span
+{
+    font-family:OpenSans-Bold;
 }
 
 #risk{
@@ -103,38 +118,59 @@
     width: 200px; 
     border-color: grey;
     float: right;
-    margin-right: 30px;
+    margin-left: 63px;
 }
 
-#cancelbox{
-    background:#ffffff;
-    width:147px;
-    height:55px;
-    box-shadow:0 1px 5px 0;
-    margin-top: 69px;
-    cursor: pointer; 
-    cursor: hand;
+.footer
+{
+    margin-top: 30px;
 }
 
-#canceltitle{
-    text-align: center;
-    padding-top: 17px;
+.button
+{
+    padding: 10px;
+    cursor: pointer;
+    font-family:OpenSans;
+    font-size:14px;
+    letter-spacing:0;
+    text-align:left;
+    float: right;
+    padding: 15px 63px;
 }
 
-#approve{
-    background:#5a3ec8;
-    width:197px;
-    height:55px;
-    margin-top: 50px;
-    box-shadow:0 1px 5px 0;
-    margin-right: 40px;
-    cursor: pointer; 
-    cursor: hand;
+#cancel
+{
+    color:#454856;
 }
 
-#approvetitle{
-    text-align: center;
-    padding-top: 17px;
-    color: #dcd4f7;
+#approve
+{
+    background-color: #5a3ec8;
+    color: #FFF;
+}
+#approve.hidden
+{
+    display: none;
+}
+#approve:hover
+{
+    background-color: #473793;
+}
+
+#approve-waiting
+{
+    background-color: #5a3ec8;
+    color: #FFF;
+    cursor: default!important;
+    float: right;
+}
+#approve-waiting.hidden
+{
+    display: none;
+}
+
+.capitalise
+{
+    text-transform: capitalize;
 }
 

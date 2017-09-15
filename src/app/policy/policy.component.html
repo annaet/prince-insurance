@@ -1,12 +1,12 @@
 <div id="container">
-    <div class="section-title" >Customers // Kathryn Harris</div>
+    <div class="section-title" >Customers // Paul Harris</div>
     <div class="line-gap" ></div>
-    <div id="customer-name" >Kathryn Harris</div>
+    <div id="customer-name" >Paul Harris</div>
     <div id="policy-details-holder">
         <div id="customer-details" >
-            Owner of an <b>Arium {{car.vehicleDetails.modelType}}</b><br />
+            Owner of an <b>{{car.vehicleDetails.make}} {{car.vehicleDetails.modelType}}</b><br />
             With Prince Insurance since November 2014<br />
-            Insured on <b>25 November 2017</b><br /><br />
+            Insured on <b>25 November 2014</b><br /><br />
             Lives at:<br />
             40 Garick Pass<br />
             Newbury<br />
@@ -15,12 +15,10 @@
         <div id="car-details" >
             <span><b>{{car.vehicleDetails.make}} {{car.vehicleDetails.modelType}}</b></span><br />
             New Vehicle<br />
-            Owned by: <span>Kathryn Harris</span><br />
+            Owned by: <span>Paul Harris</span><br />
             Registered on: 8 Jan 2017<br />
             2.5L Engine 240bhp<br />
             5 Doors<br />
-            <span>Tinted Windows</span><br />
-            <span>Executive Trim</span><br />
             Colour: <span>{{car.vehicleDetails.colour}}</span>
         </div>
     </div>
@@ -29,19 +27,19 @@
     <div class="small-title" >Sensor Test</div>
     <div id="connection-test" >Click device button to test connection</div>
     <div id="live-data" >
-        <div class="data-field">
+        <div class="data-field" id="acc-data">
             <div class="small-title" >Acceleration</div>
             <span>0.26g</span>
         </div>
-        <div class="data-field">
+        <div class="data-field" id="temp-data">
             <div class="small-title" >Temperature</div>
             <span>75f</span>
         </div>
-        <div class="data-field">
+        <div class="data-field" id="humidity-data">
             <div class="small-title" >Humidity</div>
             <span>15%</span>
         </div>
-        <div class="data-field">
+        <div class="data-field" id="light-data" >
             <div class="small-title" >Light</div>
             <span>45lux</span>
         </div>

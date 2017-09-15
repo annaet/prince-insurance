@@ -6,7 +6,7 @@
         <div id="box1" >
           <div class="status">
             <div class="textstatuswrapper">
-            <span class="strong">549</span> Registered Vehicles <br>
+            <span class="strong">{{num_policies}}</span> Registered Vehicles <br>
             <span class="date">As of 11 Sept 2017</span>
             </div>
             <div class="picture">
@@ -17,7 +17,7 @@
         <div id="box2" >
           <div class="status">
             <div class="textstatuswrapper">
-              <span class="strong">590</span> Customers <br>
+              <span class="strong">{{num_policies}}</span> Customers <br>
               <span class="date">As of 11 Sept 2017</span>
             </div>
             <div class="picture">
@@ -96,6 +96,6 @@
       </div>
     </div>
 </div>
-<div *ngIf="order && order.vehicleDetails" class="notification-window">
-  <app-popup [orderDetails]="order"></app-popup>
+<div id="notification-window" class="hidden">
+  <app-popup></app-popup>
 </div>
