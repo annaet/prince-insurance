@@ -10,10 +10,12 @@ export class OverviewComponent implements OnInit {
 
   vehicle_details: any;
   num_policies = 0;
+  num_alerts = 0;
 
   constructor(private http: HttpClient) {
 
     this.num_policies = 0;
+    this.num_alerts = 0; 
 
     let websocketURL = 'ws://localhost:1880/ws/requestpolicy';
     
@@ -44,6 +46,12 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
 
+    this.get_number_cust_and_cars()
+
+  }
+
+  get_number_cust_and_cars()
+  {
     var parent = this;
     var XMLReq = new XMLHttpRequest();
     XMLReq.open("GET", "http://localhost:3000/api/queries/Q1?insurer=resource%3Aorg.insurance.Insurer%23prince");
@@ -51,11 +59,35 @@ export class OverviewComponent implements OnInit {
       if (XMLReq.readyState == XMLHttpRequest.DONE)
       {
         var num_pols = JSON.parse(XMLReq.responseText);
-        console.log(XMLReq.responseText)
         parent.num_policies = num_pols.length;
+        parent.get_number_alerts(num_pols);
       }
     };
     XMLReq.send(null);
+  }
+
+  get_number_alerts(car_data:any)
+  {
+    var parent = this;
+    for(var i = 0; i < car_data.length; i++)
+    {
+      var vin_data = car_data[i].vehicleDetails.split('#')
+      var vin = vin_data[vin_data.length-1]
+      console.log(vin)
+      var XMLReq = new XMLHttpRequest();
+      XMLReq.open("GET", "http://localhost:3000/api/queries/Q2?vehicleDetails=resource%3Aorg.vda.Vehicle%23"+vin);
+      XMLReq.onreadystatechange = function() {
+        if (XMLReq.readyState == XMLHttpRequest.DONE)
+        {
+          var usageRecords = JSON.parse(XMLReq.responseText);
+          for(var j = 0; j < usageRecords.length; j++)
+          {
+            parent.num_alerts += usageRecords[j].usageEvents.length;
+          }
+        }
+      }
+      XMLReq.send(null);
+    }
 
   }
 

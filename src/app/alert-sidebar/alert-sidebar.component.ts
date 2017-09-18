@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertSidebarComponent implements OnInit {
 
-  order: any;
+  alert: any;
+  last_event_id: string;
   
   constructor() {
-    let webSocketURL = 'ws://localhost:1880/ws/updateorderstatus';
+
+    this.last_event_id = "BLANK";
+
+    let webSocketURL = 'ws://localhost:1880/ws/addusageevent';
 
     console.log('connecting websocket', webSocketURL);
     let websocket = new WebSocket(webSocketURL);
@@ -20,33 +24,40 @@ export class AlertSidebarComponent implements OnInit {
     };
 
     websocket.onmessage = event => {
-      this.order = JSON.parse(event.data);
-      document.getElementById('alert-block-holder').innerHTML = `<div class="alert-block" _ngcontent-c3="" >
+
+      console.log("hello world")
+      this.alert = JSON.parse(event.data);
+      
+      if(this.last_event_id == this.alert.usageEvent.eventID) // EVENT SOMETIMES FIRES MORE THAN ONCE, THIS PREVENTS SAME MESSAGE APPEARING OVER AND OVER
+      {
+        return;
+      }
+
+      this.last_event_id = this.alert.usageEvent.eventID;
+
+      document.getElementById('alert-block-holder').innerHTML = `<div class="alert-block added-element" _ngcontent-c3="" >
                                                                   <div class="alert-header" _ngcontent-c3="">
                                                                       <img _ngcontent-c3="" src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" />Alert!
                                                                   </div>
                                                                   <div class="alert-time" _ngcontent-c3="">
-                                                                      <div class="small-title" _ngcontent-c3="" >Accident</div>
-                                                                      13 Jul 2017 07:35PM
+                                                                      <div class="small-title" _ngcontent-c3="" >
+                                                                      `+this.alert.usageEvent.eventType+`
+                                                                      </div>
+                                                                      `+new Date(this.alert.usageEvent.timestamp).toLocaleString()+`
                                                                   </div>
                                                                   <div class="event-details" _ngcontent-c3="" >
                                                                       <div class="tiny-header" _ngcontent-c3="" >Event ID</div>
-                                                                      `+this.order.transactionId/*JUST RANDOM FOR MINUTE USE ID FROM MESSAGE*/+`
+                                                                      `+this.alert.usageEvent.eventID/*JUST RANDOM FOR MINUTE USE ID FROM MESSAGE*/+`
                                                                   </div>
-                                                                  <button class="button" _ngcontent-c3="" onclick="document.getElementById('`+this.order.transactionId+`').classList.add('highlight'); document.getElementById('`+this.order.transactionId+`').scrollIntoView(); setTimeout(function() { document.getElementById('`+this.order.transactionId+`').classList.remove('highlight') }, 2000)" >
+                                                                  <button class="button" _ngcontent-c3="" onclick="document.getElementById('`+this.alert.usageEvent.eventID+`').classList.add('highlight'); document.getElementById('`+this.alert.usageEvent.eventID+`').scrollIntoView(); setTimeout(function() { document.getElementById('`+this.alert.usageEvent.eventID+`').classList.remove('highlight') }, 2000)" >
                                                                     See more
                                                                   </button>
                                                                 </div>` + document.getElementById('alert-block-holder').innerHTML;
-      // this.order = JSON.parse(event.data);
-      // console.log("this.order");
     }
   }
 
   ngOnInit() {
   }
 
-  reject() {
-    delete this.order;
-  }
 
 }
