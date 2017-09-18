@@ -53,7 +53,7 @@
     border-top: 2px solid #DCD4F7;
     background-color: transparent;
 }
-.alert-block:first-child
+.alert-block.added-element:first-child
 {
     animation-name: purple-to-white;  
     animation-iteration-count: 1;  
