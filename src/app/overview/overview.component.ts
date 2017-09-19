@@ -11,8 +11,11 @@ export class OverviewComponent implements OnInit {
   vehicle_details: any;
   num_policies = 0;
   num_alerts = 0;
+  date:number;
 
   constructor(private http: HttpClient) {
+
+    this.date = Date.now()
 
     this.num_policies = 0;
     this.num_alerts = 0; 
@@ -73,7 +76,7 @@ export class OverviewComponent implements OnInit {
     {
       var vin_data = car_data[i].vehicleDetails.split('#')
       var vin = vin_data[vin_data.length-1]
-      console.log(vin)
+
       var XMLReq = new XMLHttpRequest();
       XMLReq.open("GET", "http://localhost:3000/api/queries/Q2?vehicleDetails=resource%3Aorg.vda.Vehicle%23"+vin);
       XMLReq.onreadystatechange = function() {

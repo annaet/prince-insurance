@@ -7,10 +7,10 @@
           <div class="status">
             <div class="textstatuswrapper">
             <span class="strong">{{num_policies}}</span> Registered Vehicles <br>
-            <span class="date">As of 11 Sept 2017</span>
+            <span class="date">As of {{date | date:'dd MMM y'}}</span>
             </div>
             <div class="picture">
-              <img src="assets/images/car.svg" class="logo"/>
+              <img src="assets/images/car_red.svg" class="logo"/>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <div class="status">
             <div class="textstatuswrapper">
               <span class="strong">{{num_policies}}</span> Customers <br>
-              <span class="date">As of 11 Sept 2017</span>
+              <span class="date">As of {{date | date:'dd MMM y'}}</span>
             </div>
             <div class="picture">
               <img src="assets/images/head.svg" class="logo"/>
@@ -29,7 +29,7 @@
           <div class="status">
             <div class="textstatuswrapper">
               <span class="strong">{{num_alerts}}</span> Vehicle Alerts <br>
-              <span class="date">As of 11 Sept 2017</span>
+              <span class="date">As of {{date | date:'dd MMM y'}}</span>
             </div>
             <div class="picture">
               <img src="assets/images/alert.svg" class="logoalert"/>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div id="graph">
-        <img src="assets/images/graphfinal.PNG" class="graphpic"/>
+        
     </div>
     <div id="alerts">
       <div class="wrapper">

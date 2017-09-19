@@ -105,15 +105,14 @@
 }
 
 #graph{
+    border: 1px solid #dcd4f7;
     width: 100%;
-    height: 240px;
-    border:1px solid #dcd4f7;
+    padding-top: 22%;
     margin-top: 19px;
-}
-
-.graphpic{
-    padding-left: 10px;
-    padding-top: 20px;
+    background-image: url(/assets/images/Graph_1.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #alerts{
