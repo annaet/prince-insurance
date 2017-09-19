@@ -63,34 +63,74 @@ export class OverviewComponent implements OnInit {
       {
         var num_pols = JSON.parse(XMLReq.responseText);
         parent.num_policies = num_pols.length;
-        parent.get_number_alerts(num_pols);
+        parent.get_alerts(num_pols);
       }
     };
     XMLReq.send(null);
   }
 
-  get_number_alerts(car_data:any)
+  get_alerts(car_data:any) // VERY SLOW, CHANGE WHEN THERE ARE JOINS AVAILIBLE IN QUERIES FOR A QUERY OF UPDATE RECORDS THAT LINK TO CARS INSURED BY PRINCE
   {
     var parent = this;
+    var promises = [];
     for(var i = 0; i < car_data.length; i++)
     {
-      var vin_data = car_data[i].vehicleDetails.split('#')
-      var vin = vin_data[vin_data.length-1]
-
-      var XMLReq = new XMLHttpRequest();
-      XMLReq.open("GET", "http://localhost:3000/api/queries/Q2?vehicleDetails=resource%3Aorg.vda.Vehicle%23"+vin);
-      XMLReq.onreadystatechange = function() {
-        if (XMLReq.readyState == XMLHttpRequest.DONE)
-        {
-          var usageRecords = JSON.parse(XMLReq.responseText);
-          for(var j = 0; j < usageRecords.length; j++)
+      promises.push(new Promise(function(resolve, reject){
+        var vin_data = car_data[i].vehicleDetails.split('#')
+        var vin = vin_data[vin_data.length-1]
+  
+        var XMLReq = new XMLHttpRequest();
+        XMLReq.open("GET", "http://localhost:3000/api/queries/Q2?vehicleDetails=resource%3Aorg.vda.Vehicle%23"+vin);
+        XMLReq.onreadystatechange = function() {
+          if (XMLReq.readyState == XMLHttpRequest.DONE)
           {
-            parent.num_alerts += usageRecords[j].usageEvents.length;
+            var usageRecords = JSON.parse(XMLReq.responseText);
+            var alerts = []
+            for(var j = 0; j < usageRecords.length; j++)
+            {
+              parent.num_alerts += usageRecords[j].usageEvents.length;
+              var usageEvents = usageRecords[j].usageEvents; 
+              alerts = alerts.concat(usageEvents) // MAKE AN ARRAY OF THE USAGE EVENTS FOR THIS VEHICLE, THEY MAY BE IN MULTIPLE USAGE RECORDS (HOPEFULLY NOT)
+            }
+            resolve(alerts)
           }
         }
-      }
-      XMLReq.send(null);
+        XMLReq.onerror = function() {
+          reject(true)
+        }
+        XMLReq.send(null);
+      }))
     }
+
+    Promise.all(promises).then(values => { // WHEN ALL THE HTTP REQUESTS ARE DONE FOR GETTING USAGE EVENTS 
+      var alerts = [].concat.apply([], values); // VALUES IS AN ARRAY OF ARRAYS WITH EACH SUB ARRAY AN ARRAY OF THE USAGE EVENT OBJECTS, NEED TO MERGE INTO SINGLE ARRAY FOR SORTING BELOW
+      alerts.sort(function(a,b)
+      {
+        if(a.timestamp < b.timestamp)
+        {
+          return 1;
+        }
+        else if(a.timestamp > b.timestamp)
+        {
+          return -1;
+        }
+        return 0;
+      });
+      var loop_num = 5;
+      if(alerts.length < 5)
+      {
+        loop_num = alerts.length;
+      }
+      for(var i = 0; i < loop_num; i++)
+      {
+        var event = alerts[i];
+        document.getElementById('alerts-table').innerHTML +=  `<tr _ngcontent-c2="">
+                                                                <td _ngcontent-c2="">`+event.eventID+`</td>
+                                                                <td _ngcontent-c2="">`+new Date(event.timestamp).toLocaleString()+`</td>
+                                                                <td _ngcontent-c2="">`+event.eventType+`</td>
+                                                               </tr>`
+      }
+    })
 
   }
 
