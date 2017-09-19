@@ -18,6 +18,7 @@ export class PolicyComponent {
   policy: any;
   vehicle_data: any;
   last_event_id: string;
+  websocketIoT:WebSocket;
 
   constructor(private winRef: WindowRef) {
 
@@ -138,30 +139,44 @@ export class PolicyComponent {
     //   console.log(this.location);
     // }
 
-    let webSocketIoTURL = 'ws://blockchain-tt-demo.mybluemix.net/ws/iot';
+    let webSocketIoTURL = 'ws://iot-insurance.eu-gb.mybluemix.net/ws/iot';
 
     console.log('connecting websocket', webSocketIoTURL);
-    let websocketIoT = new WebSocket(webSocketIoTURL);
+    this.websocketIoT = new WebSocket(webSocketIoTURL);
 
-    websocketIoT.onopen = function () {
+    this.websocketIoT.onopen = function () {
       console.log('iot websocket open!');
     };
 
-    websocketIoT.onmessage = event => {
-      this.vehicle_data = JSON.parse(event.data).d;
+    this.websocketIoT.onmessage = event => {
 
-      // ACCELERATION
-      let magnitude = 100*Math.sqrt((this.vehicle_data.accX*this.vehicle_data.accX)+(this.vehicle_data.accY*this.vehicle_data.accY)+(this.vehicle_data.accZ*this.vehicle_data.accZ))
-      document.querySelectorAll("#acc-data span")[0].innerHTML = Math.round(magnitude) + "G";
+      var iot_data = JSON.parse(event.data);
 
-      // AMBIENT TEMP
-      document.querySelectorAll("#temp-data span")[0].innerHTML = Math.round(this.vehicle_data.AmbTemp* 9 / 5 + 32) + "F";
+      if(iot_data.connected)
+      {
+        document.getElementById('connection-test').innerHTML = "Device Connected &#10004;"
+        document.getElementById('connection-test').classList.add('connected');
 
-      // HUMIDITY
-      document.querySelectorAll("#humidity-data span")[0].innerHTML = Math.round(this.vehicle_data.humidity) + "%";
-      
-      // LIGHT
-      document.querySelectorAll("#light-data span")[0].innerHTML = Math.round(this.vehicle_data.optical) + "LUX";
+        var vin = {
+          vin: this.car.vin
+        };
+        
+        this.websocketIoT.send(JSON.stringify(vin));
+      }
+      else if(document.getElementById('connection-test').classList.contains('connected')) // WE HAVE ALREADY CONNECTED TO THE DEVICE 
+      {
+        // ACCELERATION
+        document.querySelectorAll("#acc-data span")[0].innerHTML = parseFloat(iot_data.acceleration).toFixed(2) + "G";
+
+        // AMBIENT TEMP
+        document.querySelectorAll("#temp-data span")[0].innerHTML = iot_data.outside_temperature + "C";
+
+        // HUMIDITY
+        document.querySelectorAll("#humidity-data span")[0].innerHTML = iot_data.object_temperature + "C";
+        
+        // LIGHT
+        document.querySelectorAll("#light-data span")[0].innerHTML = iot_data.light_level + "LUX";
+      }
     }
 
   }
