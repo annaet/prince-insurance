@@ -42,6 +42,31 @@
   outline: none;
 }
 
+.sidebar li span {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.sidebar li.overview span {
+  background-image: url("/assets/images/smalloverview.svg")
+}
+
+.sidebar li.policy span {
+  background-image: url("/assets/images/smallhead.svg")
+}
+
+.sidebar li.overview.selected span {
+  background-image: url("/assets/images/smalloverview_red.svg")
+}
+
+.sidebar li.policy.selected span {
+  background-image: url("/assets/images/smallhead_red.svg")
+}
+
 .logo{
   margin-right: 21px;
 }

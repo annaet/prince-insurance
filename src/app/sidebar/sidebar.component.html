@@ -2,8 +2,8 @@
   <img src="assets/images/prince.svg" class="prince"/>
 
   <ul>
-    <li [ngClass]="{selected: selected === 'overview'}" [routerLink]="['/overview']" (click)="select('overview')"> <img src="assets/images/smalloverview.svg" class="logo"/> Overview</li>
-    <li [ngClass]="{selected: selected === 'customers'}" [routerLink]="['/policy/213']" (click)="select('customers')"> <img src="assets/images/smallhead.svg" class="logo"/> Customers</li>
+    <li [ngClass]="{selected: selected === 'overview'}" class="overview" [routerLink]="['/overview']" (click)="select('overview')"> <span class="logo"></span> Overview</li>
+    <li [ngClass]="{selected: selected === 'customers'}" class="policy" [routerLink]="['/policy/213']" (click)="select('customers')"> <span class="logo"></span> Customers</li>
     <li class="disabled"> <img src="assets/images/smallcar.svg" class="logo"/> Vehicle Information</li>
     <li class="disabled"> <img src="assets/images/smalleuro.svg" class="logo"/> Quotes</li>
     <li class="disabled"> <img src="assets/images/smallbook.svg" class="logo"/> Cover Information</li>
