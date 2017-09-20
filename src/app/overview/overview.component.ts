@@ -124,11 +124,11 @@ export class OverviewComponent implements OnInit {
       for(var i = 0; i < loop_num; i++)
       {
         var event = alerts[i];
-        document.getElementById('alerts-table').innerHTML +=  `<tr _ngcontent-c2="">
-                                                                <td _ngcontent-c2="">`+event.eventID+`</td>
-                                                                <td _ngcontent-c2="">`+new Date(event.timestamp).toLocaleString()+`</td>
-                                                                <td _ngcontent-c2="">`+event.eventType+`</td>
-                                                               </tr>`
+        document.getElementById('alerts-table').innerHTML +=  `<tr>
+                                                                <td style="padding: 12px 0 12px 0;">`+event.eventID+`</td>
+                                                                <td style="padding: 12px 0 12px 0;">`+new Date(event.timestamp).toLocaleString()+`</td>
+                                                                <td style="padding: 12px 0 12px 0;">`+event.eventType+`</td>
+                                                               </tr>` // hardcode style as ng content kept flicking between c2 and 4
       }
     })
 

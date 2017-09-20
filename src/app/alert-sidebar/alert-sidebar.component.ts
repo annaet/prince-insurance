@@ -25,34 +25,36 @@ export class AlertSidebarComponent implements OnInit {
 
     websocket.onmessage = event => {
 
-      console.log("hello world")
-      this.alert = JSON.parse(event.data);
-      
-      if(this.last_event_id == this.alert.usageEvent.eventID) // EVENT SOMETIMES FIRES MORE THAN ONCE, THIS PREVENTS SAME MESSAGE APPEARING OVER AND OVER
+      if(document.getElementById('connection-test').classList.contains('connected'))
       {
-        return;
+        this.alert = JSON.parse(event.data);
+        
+        if(this.last_event_id == this.alert.usageEvent.eventID) // EVENT SOMETIMES FIRES MORE THAN ONCE, THIS PREVENTS SAME MESSAGE APPEARING OVER AND OVER
+        {
+          return;
+        }
+
+        this.last_event_id = this.alert.usageEvent.eventID;
+
+        document.getElementById('alert-block-holder').innerHTML = `<div class="alert-block added-element" _ngcontent-c3="" >
+                                                                    <div class="alert-header" _ngcontent-c3="">
+                                                                        <img _ngcontent-c3="" src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" />Alert!
+                                                                    </div>
+                                                                    <div class="alert-time" _ngcontent-c3="">
+                                                                        <div class="small-title" _ngcontent-c3="" >
+                                                                        `+this.alert.usageEvent.eventType+`
+                                                                        </div>
+                                                                        `+new Date(this.alert.usageEvent.timestamp).toLocaleString()+`
+                                                                    </div>
+                                                                    <div class="event-details" _ngcontent-c3="" >
+                                                                        <div class="tiny-header" _ngcontent-c3="" >Event ID</div>
+                                                                        `+this.alert.usageEvent.eventID/*JUST RANDOM FOR MINUTE USE ID FROM MESSAGE*/+`
+                                                                    </div>
+                                                                    <button class="button" _ngcontent-c3="" onclick="document.getElementById('`+this.alert.usageEvent.eventID+`').classList.add('highlight'); document.getElementById('`+this.alert.usageEvent.eventID+`').scrollIntoView(); setTimeout(function() { document.getElementById('`+this.alert.usageEvent.eventID+`').classList.remove('highlight') }, 2000)" >
+                                                                      See more
+                                                                    </button>
+                                                                  </div>` + document.getElementById('alert-block-holder').innerHTML;
       }
-
-      this.last_event_id = this.alert.usageEvent.eventID;
-
-      document.getElementById('alert-block-holder').innerHTML = `<div class="alert-block added-element" _ngcontent-c3="" >
-                                                                  <div class="alert-header" _ngcontent-c3="">
-                                                                      <img _ngcontent-c3="" src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" />Alert!
-                                                                  </div>
-                                                                  <div class="alert-time" _ngcontent-c3="">
-                                                                      <div class="small-title" _ngcontent-c3="" >
-                                                                      `+this.alert.usageEvent.eventType+`
-                                                                      </div>
-                                                                      `+new Date(this.alert.usageEvent.timestamp).toLocaleString()+`
-                                                                  </div>
-                                                                  <div class="event-details" _ngcontent-c3="" >
-                                                                      <div class="tiny-header" _ngcontent-c3="" >Event ID</div>
-                                                                      `+this.alert.usageEvent.eventID/*JUST RANDOM FOR MINUTE USE ID FROM MESSAGE*/+`
-                                                                  </div>
-                                                                  <button class="button" _ngcontent-c3="" onclick="document.getElementById('`+this.alert.usageEvent.eventID+`').classList.add('highlight'); document.getElementById('`+this.alert.usageEvent.eventID+`').scrollIntoView(); setTimeout(function() { document.getElementById('`+this.alert.usageEvent.eventID+`').classList.remove('highlight') }, 2000)" >
-                                                                    See more
-                                                                  </button>
-                                                                </div>` + document.getElementById('alert-block-holder').innerHTML;
     }
   }
 

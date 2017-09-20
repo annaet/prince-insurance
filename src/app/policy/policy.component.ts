@@ -34,57 +34,63 @@ export class PolicyComponent {
 
     websocketAlerts.onmessage = event => {
 
-
       this.alert = JSON.parse(event.data);
 
-      if(this.last_event_id == this.alert.eventId) // EVENT SOMETIMES FIRES MORE THAN ONCE, THIS PREVENTS SAME MESSAGE APPEARING OVER AND OVER
+      if(document.getElementById('connection-test').classList.contains('connected'))
       {
-        return;
+
+        if(this.last_event_id == this.alert.eventId) // EVENT SOMETIMES FIRES MORE THAN ONCE, THIS PREVENTS SAME MESSAGE APPEARING OVER AND OVER
+        {
+          return;
+        }
+
+        this.last_event_id = this.alert.eventId;
+
+        //{"$class":"org.vda.AddUsageEventEvent","vin":"53f09d9655d751049","usageEvents":{"$class":"org.vda.UsageEvent","eventType":"ACCIDENT","acceleration":25,"temperature":10,"humidity":12,"light_level":20},"eventId":"a1e0f0a4-3df8-4c5b-ad23-53dc6db27a0d#0","timestamp":"2017-09-18T12:41:15.536Z","_msgid":"c936f38a.0c1a7"} 1 main.bundle.js:296:13
+        
+
+        document.getElementById('alert-holder').innerHTML = `<div id="`+this.alert.usageEvent.eventID+`" class="alert-block" _ngcontent-c2="" >
+                                                                    <div class="left-column" _ngcontent-c2="" >
+                                                                        <div class="notification-title" _ngcontent-c2="" ><img src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" _ngcontent-c2="" />Alert!</div>
+                                                                        <div class="alert-time" _ngcontent-c2="" >
+                                                                            <div class="small-title" _ngcontent-c2="" >
+                                                                            `+this.alert.usageEvent.eventType+`
+                                                                            </div>
+                                                                            `+new Date(this.alert.timestamp).toLocaleString()+`
+                                                                        </div>
+                                                                        <div class="event-details" _ngcontent-c2="" >
+                                                                            <div class="tiny-header" _ngcontent-c2="" >Event ID</div>
+                                                                            `+this.alert.usageEvent.eventID+`
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="alert-detailed-data" _ngcontent-c2="" >
+                                                                        <div class="data-field" _ngcontent-c2="">
+                                                                            <div class="small-title" _ngcontent-c2="" >Acceleration</div>
+                                                                            <span _ngcontent-c2="" >`+parseFloat(this.alert.usageEvent.acceleration).toFixed(2)+`G</span>
+                                                                        </div>
+                                                                        <div class="data-field" _ngcontent-c2="">
+                                                                        <div class="small-title" _ngcontent-c2="" >Pitch</div>
+                                                                        <span _ngcontent-c2="" >`+parseFloat(this.alert.usageEvent.pitch).toFixed(2)+`&deg;</span>
+                                                                      </div>
+                                                                      <div class="data-field" _ngcontent-c2="">
+                                                                        <div class="small-title" _ngcontent-c2="" >Roll</div>
+                                                                        <span _ngcontent-c2="" >`+parseFloat(this.alert.usageEvent.roll).toFixed(2)+`&deg;</span>
+                                                                      </div>
+                                                                        <div class="data-field" _ngcontent-c2="">
+                                                                            <div class="small-title" _ngcontent-c2="" >Air Temperature</div>
+                                                                            <span _ngcontent-c2="" >`+this.alert.usageEvent.air_temperature+`F</span>
+                                                                        </div>
+                                                                        <div class="data-field" _ngcontent-c2="" >
+                                                                            <div class="small-title" _ngcontent-c2="" >Engine Temperature</div>
+                                                                            <span _ngcontent-c2="" >`+this.alert.usageEvent.engine_temperature+`F</span>
+                                                                        </div>
+                                                                        <div class="data-field" _ngcontent-c2="" >
+                                                                            <div class="small-title" _ngcontent-c2="" >Light</div>
+                                                                            <span _ngcontent-c2="" >`+this.alert.usageEvent.light_level+`LUX</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>` + document.getElementById('alert-holder').innerHTML;
       }
-
-      this.last_event_id = this.alert.eventId;
-
-      //{"$class":"org.vda.AddUsageEventEvent","vin":"53f09d9655d751049","usageEvents":{"$class":"org.vda.UsageEvent","eventType":"ACCIDENT","acceleration":25,"temperature":10,"humidity":12,"light_level":20},"eventId":"a1e0f0a4-3df8-4c5b-ad23-53dc6db27a0d#0","timestamp":"2017-09-18T12:41:15.536Z","_msgid":"c936f38a.0c1a7"} 1 main.bundle.js:296:13
-      
-
-      document.getElementById('alert-holder').innerHTML = `<div id="`+this.alert.usageEvent.eventID+`" class="alert-block" _ngcontent-c2="" >
-                                                                  <div class="left-column" _ngcontent-c2="" >
-                                                                      <div class="notification-title" _ngcontent-c2="" ><img src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" _ngcontent-c2="" />Alert!</div>
-                                                                      <div class="alert-time" _ngcontent-c2="" >
-                                                                          <div class="small-title" _ngcontent-c2="" >
-                                                                          `+this.alert.usageEvent.eventType+`
-                                                                          </div>
-                                                                          `+new Date(this.alert.timestamp).toLocaleString()+`
-                                                                      </div>
-                                                                      <div class="event-details" _ngcontent-c2="" >
-                                                                          <div class="tiny-header" _ngcontent-c2="" >Event ID</div>
-                                                                          `+this.alert.usageEvent.eventID+`
-                                                                      </div>
-                                                                  </div>
-                                                                  <div class="alert-detailed-data" _ngcontent-c2="" >
-                                                                      <div class="data-field" _ngcontent-c2="">
-                                                                          <div class="small-title" _ngcontent-c2="" >Acceleration</div>
-                                                                          <span _ngcontent-c2="" >`+this.alert.usageEvent.acceleration+`G</span>
-                                                                      </div>
-                                                                      <div class="data-field" _ngcontent-c2="">
-                                                                          <div class="small-title" _ngcontent-c2="" >Temperature</div>
-                                                                          <span _ngcontent-c2="" >`+this.alert.usageEvent.temperature+`F</span>
-                                                                      </div>
-                                                                      <div class="data-field" _ngcontent-c2="" >
-                                                                          <div class="small-title" _ngcontent-c2="" >Humidity</div>
-                                                                          <span _ngcontent-c2="" >`+this.alert.usageEvent.humidity+`%</span>
-                                                                      </div>
-                                                                      <div class="data-field" _ngcontent-c2="" >
-                                                                          <div class="small-title" _ngcontent-c2="" >x: 1.45</div>
-                                                                          <div class="small-title" _ngcontent-c2="" >y: 2.48</div>
-                                                                          <div class="small-title" _ngcontent-c2="" >z: 0.98</div>
-                                                                      </div>
-                                                                      <div class="data-field" _ngcontent-c2="" >
-                                                                          <div class="small-title" _ngcontent-c2="" >Light</div>
-                                                                          <span _ngcontent-c2="" >`+this.alert.usageEvent.light_level+`G</span>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>` + document.getElementById('alert-holder').innerHTML;
     }
 
     this.L = winRef.nativeWindow.L;
@@ -171,7 +177,7 @@ export class PolicyComponent {
         // AMBIENT TEMP
         document.querySelectorAll("#temp-data span")[0].innerHTML = iot_data.outside_temperature + "C";
 
-        // HUMIDITY
+        // OBJECT TEMP
         document.querySelectorAll("#humidity-data span")[0].innerHTML = iot_data.object_temperature + "C";
         
         // LIGHT
@@ -285,20 +291,23 @@ export class PolicyComponent {
                 <div class="alert-detailed-data" _ngcontent-c2="" >
                     <div class="data-field" _ngcontent-c2="">
                         <div class="small-title" _ngcontent-c2="" >Acceleration</div>
-                        <span _ngcontent-c2="" >`+usageEvent.acceleration+`G</span>
+                        <span _ngcontent-c2="" >`+parseFloat(usageEvent.acceleration).toFixed(2)+`G</span>
                     </div>
                     <div class="data-field" _ngcontent-c2="">
-                        <div class="small-title" _ngcontent-c2="" >Temperature</div>
-                        <span _ngcontent-c2="" >`+usageEvent.temperature+`F</span>
+                      <div class="small-title" _ngcontent-c2="" >Pitch</div>
+                      <span _ngcontent-c2="" >`+parseFloat(usageEvent.pitch).toFixed(2)+`&deg;</span>
+                    </div>
+                    <div class="data-field" _ngcontent-c2="">
+                      <div class="small-title" _ngcontent-c2="" >Roll</div>
+                      <span _ngcontent-c2="" >`+parseFloat(usageEvent.roll).toFixed(2)+`&deg;</span>
+                    </div>
+                    <div class="data-field" _ngcontent-c2="">
+                        <div class="small-title" _ngcontent-c2="" >Air Temperature</div>
+                        <span _ngcontent-c2="" >`+usageEvent.air_temperature+`F</span>
                     </div>
                     <div class="data-field" _ngcontent-c2="" >
-                        <div class="small-title" _ngcontent-c2="" >Humidity</div>
-                        <span _ngcontent-c2="" >`+usageEvent.humidity+`%</span>
-                    </div>
-                    <div class="data-field" _ngcontent-c2="" >
-                        <div class="small-title" _ngcontent-c2="" >x: 1.45</div>
-                        <div class="small-title" _ngcontent-c2="" >y: 2.48</div>
-                        <div class="small-title" _ngcontent-c2="" >z: 0.98</div>
+                        <div class="small-title" _ngcontent-c2="" >Engine Temperature</div>
+                        <span _ngcontent-c2="" >`+usageEvent.engine_temperature+`F</span>
                     </div>
                     <div class="data-field" _ngcontent-c2="" >
                         <div class="small-title" _ngcontent-c2="" >Light</div>
