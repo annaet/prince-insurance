@@ -54,7 +54,7 @@ export class PolicyComponent {
                                                                         <div class="notification-title" _ngcontent-c2="" ><img src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" _ngcontent-c2="" />Alert!</div>
                                                                         <div class="alert-time" _ngcontent-c2="" >
                                                                             <div class="small-title" _ngcontent-c2="" >
-                                                                            `+this.alert.usageEvent.eventType+`
+                                                                            `+this.alert.usageEvent.eventType.split('_').join(' ')+`
                                                                             </div>
                                                                             `+new Date(this.alert.timestamp).toLocaleString()+`
                                                                         </div>
@@ -268,6 +268,18 @@ export class PolicyComponent {
         for(var i = 0; i < usageRecords.length; i++)
         {
           var usageEvents = usageRecords[i].usageEvents;
+          usageEvents = usageEvents.sort(function(a,b)
+          {
+            if(new Date(a.timestamp) < new Date(b.timestamp))
+            {
+                return 1;
+            }
+            else if(new Date(a.timestamp) < new Date(b.timestamp))
+            {
+              return -1;
+            }
+            return 0;
+          })
           for(var j = 0; j < usageEvents.length; j++)
           {
             
@@ -279,7 +291,7 @@ export class PolicyComponent {
                     <div class="notification-title" _ngcontent-c2="" ><img src="assets/images/loudspeaker.png" width="22px" height="14px" alt="loudspeaker icon" _ngcontent-c2="" />Alert!</div>
                     <div class="alert-time" _ngcontent-c2="" >
                         <div class="small-title" _ngcontent-c2="" >
-                        `+usageEvent.eventType+`
+                        `+usageEvent.eventType.split('_').join(' ')+`
                         </div>
                         `+new Date(usageEvent.timestamp).toLocaleString()+`
                     </div>
@@ -323,7 +335,7 @@ export class PolicyComponent {
                                                                         </div>
                                                                         <div class="alert-time" _ngcontent-c3="">
                                                                             <div class="small-title" _ngcontent-c3="" >
-                                                                            `+usageEvent.eventType+`
+                                                                            `+usageEvent.eventType.split('_').join(' ')+`
                                                                             </div>
                                                                             `+new Date(usageEvent.timestamp).toLocaleString()+`
                                                                         </div>

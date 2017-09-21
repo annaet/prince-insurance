@@ -42,7 +42,7 @@ export class AlertSidebarComponent implements OnInit {
                                                                     </div>
                                                                     <div class="alert-time" _ngcontent-c3="">
                                                                         <div class="small-title" _ngcontent-c3="" >
-                                                                        `+this.alert.usageEvent.eventType+`
+                                                                        `+this.alert.usageEvent.eventType.split('_').join(' ')+`
                                                                         </div>
                                                                         `+new Date(this.alert.usageEvent.timestamp).toLocaleString()+`
                                                                     </div>
